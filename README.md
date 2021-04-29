@@ -1,6 +1,3 @@
-# python_prac
-python practice repo
-
 # 파이썬을 연습하는 공간입니다.
 ==============================
 
