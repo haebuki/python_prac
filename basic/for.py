@@ -32,3 +32,5 @@ for key in ages:
 
 for key, value in ages.items():
     print(key,value)
+
+#수저
