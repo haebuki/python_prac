@@ -27,3 +27,19 @@ computer = random.choice(['가위', '바위', '보'])
 
 result = rsp(computer, yours)
 print('컴퓨터는 {}\n결과는 {}'.format(computer,messages[result]))
+
+dict = {
+    'one' : 1,
+    'two' : 2
+}
+
+dict['one'] = 11
+
+print(dict)
+
+dict['three'] = 3
+
+print (dict)
+dict.pop('one')
+
+print(dict)
