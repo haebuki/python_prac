@@ -1,14 +1,14 @@
-mul=1
-result=False
-for _ in range(5):
-    x = int(input())
-    mul = mul*x
-    for i in range(100):
-        if mul==i**2:
-            result=True
-            break
+f= open('myfile.txt','r', encoding='UTF8')
 
-if result !=True:
-    print("not found")
-else:
-    print("found")
+while True:
+    line = f.readline()
+    if not line:
+        break
+    raw = line
+    print(raw)
+f.close()
+
+
+with open('myfile.txt',encoding='UTF8')as file:
+    for line in file.readlines():
+        print(line.strip().split('\t'))
