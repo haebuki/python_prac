@@ -1,19 +1,6 @@
-a = [0 for i in range(400)]
+import collections
 
-my_str = input().strip()
+my_list = [1,2,3,4,5,6,7,8,7,9,1,2,3,3,44,2,6,4,3,6,3]
+answer = collections.Counter(my_list)
 
-for element in my_str:
-    a[ord(element)]+=1
-
-max = 0
-result=[]
-
-for index,element in enumerate(a):
-    if element > max:
-        result.clear()
-        max = element
-        result+=[index]
-    elif element == max:
-        result+=[index]
-
-print("".join(map(chr,result)))
+print(type(answer))
