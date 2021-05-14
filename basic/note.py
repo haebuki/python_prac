@@ -1,6 +1,6 @@
 mul=1
 result=False
-for a in range(5):
+for _ in range(5):
     x = int(input())
     mul = mul*x
     for i in range(100):
