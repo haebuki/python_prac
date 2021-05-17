@@ -1,14 +1,8 @@
-f= open('myfile.txt','r', encoding='UTF8')
+#sw academy min,max solution
 
-while True:
-    line = f.readline()
-    if not line:
-        break
-    raw = line
-    print(raw)
-f.close()
+T = int(input())
 
-
-with open('myfile.txt',encoding='UTF8')as file:
-    for line in file.readlines():
-        print(line.strip().split('\t'))
+for count in range(0,T):
+    input()
+    a = list(map(int,input().split()))
+    print("#{} {}".format(count+1,max(a)-min(a)))
