@@ -1,53 +1,34 @@
 #
-#  topic : 구간합
+#  topic : 색칠하기
 '''
- description : SW expert academy [List1 학습] 문제 풀이
+ description : sw expert academy list2 problem
  reference!
 '''
 #  @author haebuki
-#  @date 2021-05-25
+#  @date 2021-05-27
 #  @version None 작업 내용 None
 #  @see None
 
-#정답
-TC = int(input())
 
-for tc in range(1, TC+1):
-    N, M = map(int, input().split())
-    Data = list(map(int, input().split()))
 
-    lst = []
-    for i in range(N-M+1):
-        lst.append(sum(Data[i:i+M]))
+test_case = int(input())
 
-    print('#%s %d'%(tc, max(lst)-min(lst)))
+for tc in range(1,test_case+1):
+    coord = [[0] * 10 for _ in range(0, 10)]
 
-#  내 코드(runtime error 발생!).. 시간 요소를 줄여야한다.. api를 적극 활용하자..
-''' 
-test_case = input()
+    N = int(input())
 
-for testcase in range(0,int(test_case)):
-    N, M = input().split(" ")
-
-    case_list = list(input().split(" "))
-    index=0
-    count = 0
-    max_result = 0
-    min_result = 99999
-    summ = 0
-    while 1:
-        summ += int(case_list[index])
-        count += 1
-        index += 1
-        if count == int(M):
-            if max_result < summ:
-                max_result = summ
-            if min_result > summ:
-                min_result = summ
-            if index == len(case_list):
-                break
-            summ -= int(case_list[index-int(M)])
-            count -= 1
-
-    print("#{} {}".format(testcase + 1, max_result-min_result))
-'''
+    clr = [[0]*5 for _ in range(N)]
+    count=0
+    for i in range(N):
+        clr[i] = list(map(int, input().split(" ")))
+        for j in range(clr[i][0],clr[i][2]+1):
+            for k in range(clr[i][1],clr[i][3]+1):
+                if clr[i][4] % 2 == 0:
+                    coord[j][k] += 2
+                else:
+                    coord[j][k] += 1
+    for i in range(10):
+        if coord[i].count(3)!=0:
+            count+=coord[i].count(3)
+    print("#{} {}".format(tc,count))
