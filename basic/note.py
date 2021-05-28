@@ -1,5 +1,5 @@
 #
-#  topic : 색칠하기
+#  topic : 부분집합의 합
 '''
  description : sw expert academy list2 problem
  reference!
@@ -9,26 +9,20 @@
 #  @version None 작업 내용 None
 #  @see None
 
-
+A = [i for i in range(1,13)]
 
 test_case = int(input())
 
 for tc in range(1,test_case+1):
-    coord = [[0] * 10 for _ in range(0, 10)]
+    count = 0
 
-    N = int(input())
+    N,K = map(int,input().split(" "))
 
-    clr = [[0]*5 for _ in range(N)]
-    count=0
-    for i in range(N):
-        clr[i] = list(map(int, input().split(" ")))
-        for j in range(clr[i][0],clr[i][2]+1):
-            for k in range(clr[i][1],clr[i][3]+1):
-                if clr[i][4] % 2 == 0:
-                    coord[j][k] += 2
-                else:
-                    coord[j][k] += 1
-    for i in range(10):
-        if coord[i].count(3)!=0:
-            count+=coord[i].count(3)
+    for i in range(1<<len(A)):
+        temp=[]
+        for j in range(len(A)):
+            if i & (1<<j):
+                temp.append(A[j])
+        if len(temp)== N and sum(temp)==K:
+            count+=1
     print("#{} {}".format(tc,count))
