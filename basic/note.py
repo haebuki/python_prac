@@ -1,5 +1,5 @@
 #
-#  topic : 부분집합의 합
+#  topic : 이진 탐색
 '''
  description : sw expert academy list2 problem
  reference!
@@ -9,20 +9,34 @@
 #  @version None 작업 내용 None
 #  @see None
 
-A = [i for i in range(1,13)]
-
 test_case = int(input())
 
 for tc in range(1,test_case+1):
-    count = 0
+    result = 0
+    search = 0
+    P,Pa,Pb = map(int,input().split(" "))
+    start = [1, 1]
+    end = [P, P]
+    while 1:
+        search = [int((start[0]+end[0])/2),int((start[1]+end[1])/2)]
 
-    N,K = map(int,input().split(" "))
+        if search[0] == Pa and search[1] == Pb:
+            result = '0'
+            break
+        elif search[0] == Pa:
+            result = 'A'
+            break
+        elif search[1] == Pb:
+            result = 'B'
+            break
 
-    for i in range(1<<len(A)):
-        temp=[]
-        for j in range(len(A)):
-            if i & (1<<j):
-                temp.append(A[j])
-        if len(temp)== N and sum(temp)==K:
-            count+=1
-    print("#{} {}".format(tc,count))
+        if Pa > search[0]:
+            start[0] = search[0]
+        elif Pa < search[0]:
+            end[0] = search[0]
+        if Pb > search[1]:
+            start[1] = search[1]
+        elif Pb < search[1]:
+            end[1] = search[1]
+
+    print("#{} {}".format(tc,result))
