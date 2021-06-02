@@ -40,3 +40,4 @@ for tc in range(1,test_case+1):
             end[1] = search[1]
 
     print("#{} {}".format(tc,result))
+
