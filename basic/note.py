@@ -1,27 +1,34 @@
-#
-#  topic : 특별한 정렬
-'''
- description : sw expert academy list2 problem
- reference! split 함수는 split(" ")와 split()의 의미는 같지만 실행속도에 대한 차이가 있따.
- 아무래도 모든 요소를 반복하며 스페이스를 찾고 나누는 작업이 있기때문에 훨씬 느린게 아닐까 싶다..
- 저거떄문에 너무 많은 런타임 에러를 겪엇다... ㅠㅠ 앞으로는 자동으로 스플릿될 수 있는 상황이면 split()원형을 쓰자..
-'''
-#  @author haebuki
-#  @date 2021-05-28
-#  @version None 작업 내용 None
-#  @see None
+test_case = int(input())
 
-testcase = int(input())
+for tc in range(1,test_case+1):
+    N, M = map(int, input().split())
+    map1=[]
+    map2=[]
+    end_flag=0
+    result=[]
 
-for tc in range(1, testcase + 1):
-    N = input()
-    aj = list(map(int, input().split()))
-    sorted_list = []
-    aj.sort()
-    for i in range(0,10):
-        if i % 2 == 0 :
-            sorted_list.append(aj.pop())
-        else:
-            sorted_list.append(aj.pop(0))
-    print("#{} ".format(tc), end="")
-    print(*sorted_list)
+    #create map and reversed map
+    for i in range(N):
+        map1.append(list(input()))
+    map2=list(zip(*map1))
+
+    for i in range(N):
+        index=0
+        while True:
+            if map1[i][index:index+M] == list(reversed(map1[i][index:index+M])):
+                result = map1[i][index:index+M]
+                end_flag = 1
+                break
+            elif map2[i][index:index+M] == tuple(reversed(map2[i][index:index+M])):
+                result = map2[i][index:index + M]
+                end_flag = 1
+                break
+            else:
+                index+=1
+
+            if index+M > N:
+                break
+    if end_flag==1:
+        print("#{} {}".format(tc,"".join(result)))
+
+
