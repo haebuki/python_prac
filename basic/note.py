@@ -33,3 +33,4 @@ for tc in range(1,test_case+1):
 		result=0
 	
 	print("#{} {}".format(tc,result))
+	
