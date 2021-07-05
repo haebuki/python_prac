@@ -29,7 +29,7 @@ for a in range(1, T + 1):
     stack_operater = []
     # 후위연산 스택을 순회하면서 확인
     for t in stack_result:
-        # 숫자라면 임시저장
+        # 숫자라면 임시저장c
         if '0' <= t <= '9':
             stack_operater.append(t)
         else:
