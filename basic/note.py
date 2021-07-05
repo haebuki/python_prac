@@ -1,28 +1,48 @@
 #
-#  topic : 반복문자 지우기
+#  topic : forth
 #  description : SW expert academy [string 학습] 문제 풀이
 #
 #  @author haebuki
-#  @date 2021-06-29
+#  @date 2021-07-05
 #  @version None 작업 내용 None
 #  @see None
 #
-test_case = int(input())
+T = int(input())
 
-for tc in range(1,test_case+1):
-    result=0
-    str = list(input())
-    stack1 = []
 
-    for i in str:
-        if len(stack1) == 0:
-            pass
-        elif stack1[-1] == i:
-            stack1.pop()
+def cal(t1, t, t2):
+    t1 = int(t1)
+    t2 = int(t2)
+    if t == '+':
+        return t1 + t2
+    elif t == '-':
+        return t1 - t2
+    elif t == '*':
+        return t1 * t2
+    elif t == '/':
+        return t1 // t2
+
+
+for a in range(1, T + 1):
+    stack_result = input().split()
+    stack_result.pop()
+    stack_operater = []
+    # 후위연산 스택을 순회하면서 확인
+    for t in stack_result:
+        # 숫자라면 임시저장
+        if '0' <= t <= '9':
+            stack_operater.append(t)
+        else:
+            if len(stack_operater) < 2:
+                print('#{} error'.format(a))
+                break
+            # 연산자면 2개를 꺼내서 계산한다.
+            t2 = stack_operater.pop()
+            t1 = stack_operater.pop()
+            stack_operater.append(cal(t1, t, t2))
+    else:
+        # 결과값 출력
+        if len(stack_operater) != 1:
+            print('#{} error'.format(a))
             continue
-
-        stack1.append(i)
-
-    result = len(stack1)
-
-    print("#{} {}".format(tc, result))
+        print('#{} {}'.format(a, stack_operater[0]))
