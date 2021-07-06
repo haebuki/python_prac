@@ -1,48 +1,52 @@
 #
-#  topic : forth
+#  topic : 미로
 #  description : SW expert academy [string 학습] 문제 풀이
 #
 #  @author haebuki
-#  @date 2021-07-05
+#  @date 2021-07-06
 #  @version None 작업 내용 None
 #  @see None
 #
-T = int(input())
+dx=[1,0,-1,0]
+dy=[0,1,0,-1]
 
+test_case = int(input())
 
-def cal(t1, t, t2):
-    t1 = int(t1)
-    t2 = int(t2)
-    if t == '+':
-        return t1 + t2
-    elif t == '-':
-        return t1 - t2
-    elif t == '*':
-        return t1 * t2
-    elif t == '/':
-        return t1 // t2
+for tc in range(1, test_case+1):
+    N = int(input())
+    map1=[]
+    stack1=[]
+    result=0
 
+    for _ in range(N):
+        map1.append(list(map(int,input())))
 
-for a in range(1, T + 1):
-    stack_result = input().split()
-    stack_result.pop()
-    stack_operater = []
-    # 후위연산 스택을 순회하면서 확인
-    for t in stack_result:
-        # 숫자라면 임시저장c
-        if '0' <= t <= '9':
-            stack_operater.append(t)
-        else:
-            if len(stack_operater) < 2:
-                print('#{} error'.format(a))
+    for index,value in enumerate(map1):
+        try:
+            init_x=index
+            init_y=value.index(3)
+            stack1.append([init_x,init_y])
+        except:
+            pass
+
+    while 1:
+        temp=stack1.pop()
+
+        for i in range(4):
+            x=temp[0]+dx[i]
+            y=temp[1]+dy[i]
+
+            if x > N-1 or x < 0 or y > N-1 or y < 0:
+                continue
+            if map1[x][y] == 2:
+                result = 1
                 break
-            # 연산자면 2개를 꺼내서 계산한다.
-            t2 = stack_operater.pop()
-            t1 = stack_operater.pop()
-            stack_operater.append(cal(t1, t, t2))
-    else:
-        # 결과값 출력
-        if len(stack_operater) != 1:
-            print('#{} error'.format(a))
-            continue
-        print('#{} {}'.format(a, stack_operater[0]))
+            if map1[x][y] != 0:
+                continue
+
+            map1[x][y]=1
+            stack1.append([x,y])
+
+        if len(stack1)==0 or result==1:
+            break
+    print("#{} {}".format(tc, result))
